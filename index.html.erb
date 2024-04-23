@@ -1,0 +1,48 @@
+<%= form_tag(multiply_matrices_path, method: :post, class: 'matrix-form') do %>
+  <div class="input-group">
+    <label for="rows1">Rows (Matrix 1):</label>
+    <%= text_field_tag 'rows1', nil, required: true, class: 'matrix-input' %>
+  </div>
+
+  <div class="input-group">
+    <label for="cols1">Columns (Matrix 1):</label>
+    <%= text_field_tag 'cols1', nil, required: true, class: 'matrix-input' %>
+  </div>
+
+  <div class="input-group">
+    <label for="matrix1">Matrix 1:</label>
+    <textarea name="matrix1" rows="4" cols="50" required class="matrix-input"></textarea>
+  </div>
+
+  <div class="input-group">
+    <label for="rows2">Rows (Matrix 2):</label>
+    <%= text_field_tag 'rows2', nil, required: true, class: 'matrix-input' %>
+  </div>
+
+  <div class="input-group">
+    <label for="cols2">Columns (Matrix 2):</label>
+    <%= text_field_tag 'cols2', nil, required: true, class: 'matrix-input' %>
+  </div>
+
+  <div class="input-group">
+    <label for="matrix2">Matrix 2:</label>
+    <textarea name="matrix2" rows="4" cols="50" required class="matrix-input"></textarea>
+  </div>
+
+  <%= submit_tag 'Multiply Matrices', class: 'submit-btn' %>
+<% end %>
+
+<% if session[:matrix_result] %>
+  <div class="result-container">
+    <h2>Result:</h2>
+    <table class="result-table">
+      <% session[:matrix_result].each do |row| %>
+        <tr>
+          <% row.each do |cell| %>
+            <td><%= cell %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
